@@ -5,163 +5,259 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>CSD ESPORT</title>
-    <style>
-        :root {
-            --bg: #0f172a;
-            --card: #0b1220;
-            --accent: #8108b9;
-            --muted: #94a3b8
-        }
+   <style>
+    :root {
+        --bg: #0f172a;
+        --card: #0b1220;
+        --accent: #8108b9;
+        --muted: #94a3b8;
+    }
 
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial
-        }
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+    }
 
+    body {
+        background: linear-gradient(180deg, #071029 0%, #091427 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        color: #e6eef8;
+    }
+
+    .card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+        border-radius: 12px;
+        padding: 22px;
+        width: 900px;
+        max-width: 100%;
+        box-shadow: 0 8px 30px rgba(2, 6, 23, 0.7);
+    }
+
+    h1 {
+        margin: 0 0 8px;
+        font-size: 20px;
+    }
+
+    p.lead {
+        margin: 0 0 18px;
+        color: var(--muted);
+    }
+
+    .input-names {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
+
+    .input-names input {
+        flex: 1;
+        padding: 6px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+        color: #e6eef8;
+    }
+
+    .board {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .player {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 16px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .player h2 {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .big-score {
+        font-size: 36px;
+        margin: 6px 0 0;
+        font-weight: 700;
+    }
+
+    .controls {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 14px;
+    }
+
+    button {
+        background: var(--accent);
+        border: none;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        color: #e6eef8;
+    }
+
+    button.secondary {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        color: var(--muted);
+    }
+
+    .meta {
+        margin-top: 14px;
+        color: var(--muted);
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .games {
+        margin-top: 12px;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 500px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.03);
+        font-size: 14px;
+    }
+
+    .winner {
+        color: #16a34a;
+        font-weight: 700;
+    }
+
+    .notice {
+        margin-top: 10px;
+        color: #fca5a5;
+    }
+
+    footer {
+        margin-top: 14px;
+        font-size: 13px;
+        color: var(--muted);
+    }
+
+    /* ✅ Responsive Design for Mobile Devices */
+    @media (max-width: 768px) {
         body {
-            background: linear-gradient(180deg, #071029 0%, #091427 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            color: #e6eef8
+            padding: 12px;
         }
 
         .card {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-            border-radius: 12px;
-            padding: 22px;
-            width: 900px;
-            max-width: 100%;
-            box-shadow: 0 8px 30px rgba(2, 6, 23, 0.7)
+            width: 100%;
+            padding: 16px;
         }
 
         h1 {
-            margin: 0 0 8px;
-            font-size: 20px
-        }
-
-        p.lead {
-            margin: 0 0 18px;
-            color: var(--muted)
-        }
-
-        .input-names {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
-            flex-wrap: wrap
-        }
-
-        .input-names input {
-            flex: 1;
-            padding: 6px;
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            color: #e6eef8
-        }
-
-        .board {
-            display: flex;
-            gap: 18px;
-            align-items: center;
-            flex-wrap: wrap
-        }
-
-        .player {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 16px;
-            border-radius: 10px;
-            text-align: center
+            font-size: 18px;
         }
 
         .player h2 {
-            margin: 0;
-            font-size: 18px
+            font-size: 16px;
         }
 
         .big-score {
-            font-size: 36px;
-            margin: 6px 0 0;
-            font-weight: 700
+            font-size: 28px;
+        }
+
+        .input-names {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-names input {
+            width: 100%;
+        }
+
+        .board {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .player {
+            width: 100%;
         }
 
         .controls {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            align-items: center;
-            margin-top: 14px;
+            flex-direction: column;
+            align-items: stretch;
         }
 
         button {
-            background: var(--accent);
-            border: none;
-            padding: 8px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #e6eef8;
-
-        }
-
-        button.secondary {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            color: var(--muted)
-        }
-
-        .meta {
-            margin-top: 14px;
-            color: var(--muted);
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            flex-wrap: wrap
-        }
-
-        .games {
-            margin-top: 12px;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 12px;
-            border-radius: 8px;
-            overflow-x: auto
+            width: 100%;
         }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 500px
+            min-width: unset;
+            font-size: 12px;
         }
 
         th,
         td {
-            padding: 8px;
-            text-align: center;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.03);
-            font-size: 14px
-        }
-
-        .winner {
-            color: #16a34a;
-            font-weight: 700
-        }
-
-        .notice {
-            margin-top: 10px;
-            color: #fca5a5
+            padding: 6px;
         }
 
         footer {
-            margin-top: 14px;
-            font-size: 13px;
-            color: var(--muted)
+            text-align: center;
+            font-size: 12px;
         }
-    </style>
+    }
+
+    /* ✅ Extra small screens (phones <480px) */
+    @media (max-width: 480px) {
+        .card {
+            padding: 12px;
+        }
+
+        h1 {
+            font-size: 16px;
+        }
+
+        .big-score {
+            font-size: 24px;
+        }
+
+        button {
+            font-size: 14px;
+            padding: 6px 10px;
+        }
+
+        .games {
+            padding: 8px;
+        }
+
+        th,
+        td {
+            font-size: 11px;
+            padding: 4px;
+        }
+    }
+</style>
+
 </head>
 
 <body>
@@ -291,5 +387,6 @@
         render();
     </script>
 </body>
+
 
 </html>
