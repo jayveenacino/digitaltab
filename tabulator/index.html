@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CSD ESPORT</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #0b1220;
+            --accent: #8108b9;
+            --muted: #94a3b8
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial
+        }
+
+        body {
+            background: linear-gradient(180deg, #071029 0%, #091427 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            color: #e6eef8
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 12px;
+            padding: 22px;
+            width: 900px;
+            max-width: 100%;
+            box-shadow: 0 8px 30px rgba(2, 6, 23, 0.7)
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 20px
+        }
+
+        p.lead {
+            margin: 0 0 18px;
+            color: var(--muted)
+        }
+
+        .input-names {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap
+        }
+
+        .input-names input {
+            flex: 1;
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: #e6eef8
+        }
+
+        .board {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .player {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 16px;
+            border-radius: 10px;
+            text-align: center
+        }
+
+        .player h2 {
+            margin: 0;
+            font-size: 18px
+        }
+
+        .big-score {
+            font-size: 36px;
+            margin: 6px 0 0;
+            font-weight: 700
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 14px;
+        }
+
+        button {
+            background: var(--accent);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #e6eef8;
+
+        }
+
+        button.secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--muted)
+        }
+
+        .meta {
+            margin-top: 14px;
+            color: var(--muted);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .games {
+            margin-top: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 12px;
+            border-radius: 8px;
+            overflow-x: auto
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.03);
+            font-size: 14px
+        }
+
+        .winner {
+            color: #16a34a;
+            font-weight: 700
+        }
+
+        .notice {
+            margin-top: 10px;
+            color: #fca5a5
+        }
+
+        footer {
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--muted)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="header">
+            <h1 style="margin-bottom: 1px; margin-left: 90px; ">CSD ESPORT SCORE TAB</h1>
+            <img src="./assets/images/logo.png" style="height: 60px;margin-top: -100px;" alt="">
+        </div>
+
+        <div class="input-names">
+            <input type="text" id="name1" placeholder="Player 1 Name" value="Player 1">
+            <input type="text" id="name2" placeholder="Player 2 Name" value="Player 2">
+            <input type="text" id="name3" placeholder="Player 3 Name" value="Player 3">
+            <input type="text" id="name4" placeholder="Player 4 Name" value="Player 4">
+        </div>
+        <div class="board">
+            <div class="player" id="player1">
+                <h2 id="label1">Player 1</h2>
+                <div class="big-score" id="score1">0</div>
+                <button onclick="addPoint(1)">+1</button>
+                <button class="secondary" onclick="subtractPoint(1)">-1</button>
+            </div>
+            <div class="player" id="player2">
+                <h2 id="label2">Player 2</h2>
+                <div class="big-score" id="score2">0</div>
+                <button onclick="addPoint(2)">+1</button>
+                <button class="secondary" onclick="subtractPoint(2)">-1</button>
+            </div>
+        </div>
+        <div class="board">
+            <div class="player" id="player3">
+                <h2 id="label3">Player 3</h2>
+                <div class="big-score" id="score3">0</div>
+                <button onclick="addPoint(3)">+1</button>
+                <button class="secondary" onclick="subtractPoint(3)">-1</button>
+            </div>
+            <div class="player" id="player4">
+                <h2 id="label4">Player 4</h2>
+                <div class="big-score" id="score4">0</div>
+                <button onclick="addPoint(4)">+1</button>
+                <button class="secondary" onclick="subtractPoint(4)">-1</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button onclick="endRound()">End Round</button>
+            <button class="secondary" onclick="nextRound()">Next Round</button>
+            <button class="secondary" onclick="resetAll()">Reset Match</button>
+            <button onclick="saveToDocx()">Save to Word (.docx)</button>
+        </div>
+        <div class="games" id="gamesList">
+            <strong>Rounds history</strong>
+            <table id="gamesTable">
+                <thead>
+                    <tr>
+                        <th>Round</th>
+                        <th>P1</th>
+                        <th>P2</th>
+                        <th>P3</th>
+                        <th>P4</th>
+                        <th>Winners</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </div>
+    <script>
+        const state = { currentRound: 1, rounds: [], score: [0, 0, 0, 0], results: [[], [], [], []], totalRounds: 3, finished: false };
+        function updateNames() {
+            for (let i = 1; i <= 4; i++) {
+                const name = document.getElementById('name' + i).value || 'Player ' + i;
+                document.getElementById('label' + i).textContent = name;
+            }
+        }
+        function render() {
+            updateNames();
+            for (let i = 0; i < 4; i++) document.getElementById('score' + (i + 1)).textContent = state.score[i];
+            const tbody = document.querySelector('#gamesTable tbody');
+            tbody.innerHTML = '';
+            state.rounds.forEach(r => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${r.round}</td><td>${r.scores[0]}</td><td>${r.scores[1]}</td><td>${r.scores[2]}</td><td>${r.scores[3]}</td><td>${r.winners.join(' & ')}</td>`;
+                tbody.appendChild(tr);
+            });
+            document.getElementById('matchStatus').textContent = state.finished ? 'Finished' : 'In progress';
+            document.getElementById('matchWinner').textContent = state.finished ? `Match winners: ${currentMatchWinners().join(' & ')}` : '';
+        }
+        function addPoint(p) { if (state.finished) return; state.score[p - 1]++; render(); }
+        function subtractPoint(p) { if (state.finished) return; state.score[p - 1] = Math.max(0, state.score[p - 1] - 1); render(); }
+        function endRound() {
+            const scores = [...state.score];
+            const winners = [];
+            // Match 1: P1 vs P2
+            if (scores[0] > scores[1]) { winners.push(document.getElementById('name1').value); state.results[0].push('W'); state.results[1].push('L'); }
+            else if (scores[0] < scores[1]) { winners.push(document.getElementById('name2').value); state.results[0].push('L'); state.results[1].push('W'); }
+            else { state.results[0].push('D'); state.results[1].push('D'); }
+            // Match 2: P3 vs P4
+            if (scores[2] > scores[3]) { winners.push(document.getElementById('name3').value); state.results[2].push('W'); state.results[3].push('L'); }
+            else if (scores[2] < scores[3]) { winners.push(document.getElementById('name4').value); state.results[2].push('L'); state.results[3].push('W'); }
+            else { state.results[2].push('D'); state.results[3].push('D'); }
+            state.rounds.push({ round: state.currentRound, scores: scores, winners: winners });
+            if (state.currentRound >= state.totalRounds) state.finished = true;
+            render();
+        }
+        function nextRound() { if (state.finished) return; endRound(); state.currentRound++; state.score = [0, 0, 0, 0]; render(); }
+        function resetAll() { if (!confirm('Reset match?')) return; state.currentRound = 1; state.rounds = []; state.score = [0, 0, 0, 0]; state.results = [[], [], [], []]; state.finished = false; render(); }
+        function currentMatchWinners() {
+            const winCount = [0, 0, 0, 0];
+            state.results.forEach((r, i) => { winCount[i] = r.filter(x => 'W' === x).length });
+            const maxW = Math.max(...winCount);
+            const winners = [];
+            winCount.forEach((w, i) => { if (w === maxW) winners.push(document.getElementById('name' + (i + 1)).value) });
+            return winners;
+        }
+        function saveToDocx() {
+            let content = '';
+            for (let i = 1; i <= 4; i++) {
+                const name = document.getElementById('name' + i).value || 'Player ' + i;
+                content += `${name} ${state.results[i - 1].join(' ')}\n`;
+            }
+            const blob = new Blob([content], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = 'XO_scoreboard.docx'; a.click(); URL.revokeObjectURL(url);
+            alert('Saved results to DOCX');
+        }
+        render();
+    </script>
+</body>
+
+</html>
